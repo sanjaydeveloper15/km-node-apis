@@ -1,0 +1,6 @@
+{
+    "appName": "Kalkine Media",
+    "appUrl": "http://127.0.0.1:9000",
+    "dbUrl": "mongodb://127.0.0.1/KalkineDB",
+    "port": 9000
+}
