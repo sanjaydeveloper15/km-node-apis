@@ -16,6 +16,11 @@ conn.on('open', () => {
 // middleware 
 app.use(morgon('dev'))
 
+// body parser for getting form data in body
+var bodyParser = require('body-parser')
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
+
 // all routing
 app.get('/', (req, res) => {
   res.send(server.appName)
