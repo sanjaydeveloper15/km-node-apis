@@ -16,9 +16,11 @@ conn.on('open', () => {
 // middleware 
 app.use(morgon('dev'))
 
-// body parser for getting form data in body
-var bodyParser = require('body-parser')
-app.use(bodyParser.json({limit: '5mb'}));
+// body parser and for getting json, url encoded, form data in request
+var bodyParser = require('body-parser'),
+    multer = require('multer')
+app.use(bodyParser.json({limit: '5mb'})); // we need to pass Content-Type: application/json in header
+app.use(multer().array()) //for getting form data, we don't need to pass anything specifically in header
 app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
 
 // all routing
@@ -28,6 +30,6 @@ app.get('/', (req, res) => {
 app.use('/api/v1',require('./src/api_v1/routes'))
 
 // listen server
-app.listen(port, () => {
+app.listen(port,"0.0.0.0", () => {
   console.log(`${server.appName} listening on port ${port}!`)
 })
